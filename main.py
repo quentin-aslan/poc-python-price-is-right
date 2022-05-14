@@ -37,9 +37,8 @@ Products = {"Ecran": {
 def main():
     askPlayersName()
     registerPlayers()
-    # storyTeller()
+    storyTeller()
     product = chooseRandomProduct()
-    print("Vous devez trouver le prix de ce produit : ", product.get("name"))
     gameLoop(product)
 
 
@@ -113,7 +112,9 @@ def storyTeller():
 
 def chooseRandomProduct():
     randomProductName = random.choice(list(Products.keys()))
-    return Products.get(randomProductName)
+    product = Products.get(randomProductName)
+    print("Vous devez trouver le prix de ce produit : ", product.get("name"))
+    return product
 
 
 main()
