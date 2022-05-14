@@ -44,29 +44,41 @@ def main():
 
 def gameLoop(product):
     price = product.get("price")
+    
+    player1Choice = False
+    player2Choice = False
 
-    player1choice = int(input(playerName1 + ", please enter your choice: "))
-    playerTurnVerification(player1choice, price, playerName2)
-    if player1choice == price:
+    while not player1Choice:
+        try:
+            player1Choice = int(input(playerName1 + ", please enter your choice: "))
+        except ValueError:
+            player1Choice = False
+    playerTurnVerification(player1Choice, price, playerName2)
+    if player1Choice == price:
         print(playerName1 + ", you win !")
         return
 
-    player2choice = int(input(playerName2 + ", please enter your choice: "))
-    if player2choice == price:
+    while not player2Choice:
+        try:
+            player2Choice = int(input(playerName2 + ", please enter your choice: "))
+        except ValueError:
+            player2Choice = False
+
+    if player2Choice == price:
         print(playerName2 + ", you win !")
         return
 
-    playerTurnVerification(player2choice, price, playerName1)
+    playerTurnVerification(player2Choice, price, playerName1)
 
-    if player1choice != price and player2choice != price:
+    if player1Choice != price and player2Choice != price:
         gameLoop(product)
 
 
 def playerTurnVerification(valuePlayer, price, nextPlayerName):
     if valuePlayer < price:
-        print("C'est plus ! Au tour de " + nextPlayerName)
+        print("It's more! Now it's the turn of " + nextPlayerName)
     elif valuePlayer > price:
-        print("C'est moins ! Au tour de " + nextPlayerName)
+        print("It's less! Now it's the turn of " + nextPlayerName)
 
 
 # Ask the players for their name
